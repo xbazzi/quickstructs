@@ -105,22 +105,22 @@ file(GLOB_RECURSE BENCHMARK_SOURCES
 )
 
 if(BENCHMARK_SOURCES)
-    add_executable(benchmarks
+    add_executable(quick_benchmarks
         ${BENCHMARK_SOURCES}
     )
 
-    set_target_properties(benchmarks PROPERTIES
+    set_target_properties(quick_benchmarks PROPERTIES
         CXX_STANDARD 23
         CXX_STANDARD_REQUIRED YES
     )
 
-    target_include_directories(benchmarks PRIVATE
+    target_include_directories(quick_benchmarks PRIVATE
         ${CMAKE_SOURCE_DIR}/include
         ${CMAKE_SOURCE_DIR}/benchmarks   # For benchmark utilities
         ${CMAKE_CURRENT_BINARY_DIR}      # For generated files
     )
 
-    target_link_libraries(benchmarks PRIVATE
+    target_link_libraries(quick_benchmarks PRIVATE
         benchmark::benchmark
         benchmark::benchmark_main
     )
