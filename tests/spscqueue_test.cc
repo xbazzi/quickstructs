@@ -7,6 +7,7 @@
 #include <ranges>
 
 #include "quick/utils/Timer.hpp" 
+#include "test_utils.hh" 
 #include "quick/structs/SPSCQueue.hpp"
 // clang-format on
 

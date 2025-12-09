@@ -38,6 +38,15 @@ else()
 endif()
 add_link_options(-Wno-interference-size -fsanitize=address,undefined,leak)
 
+# Create header-only library interface
+add_library(quickstructs INTERFACE)
+target_include_directories(quickstructs INTERFACE
+    $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:include>
+)
+
+target_compile_features(quickstructs INTERFACE cxx_std_23)
+
 # Compiler flags and other goodies
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
