@@ -1,0 +1,10 @@
+build/
+.direnv/
+.vscode
+html/
+latex/
+*cache*
+perf*
+vtune*
+LastTest.log
+CTest*
