@@ -1,9 +1,9 @@
 #pragma once
 
 // C++ Includes
+#include <memory>
 #include <queue>
 #include <string>
-#include <memory>
 
 // Third Party Includes
 // #include "trading.pb.h"
