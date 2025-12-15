@@ -1,9 +1,10 @@
 // C++ Includes
 #include <cstdint>
+#include <iostream>
 #include <thread>
 
-// FastInAHurry Includes
-#include "fiah/structs/SPSCQueue.hh"
+// QuickLib Includes
+#include "quick/structs/SPSCQueue.hh"
 
 namespace fiah
 {
@@ -13,24 +14,23 @@ static void ExampleSPSCQueue()
 
     // 1 KB queue
     constexpr uint16_t N = (1 << 10) / sizeof(ElementType);
-    constexpr quick::structs::SPSCQueue<ElementType, N> queue;
-    static_asset(queue.capacit)
+    quick::structs::SPSCQueue<ElementType, N> queue;
+    static_assert(queue.capacity() == N);
 
-        std::thread prod([&] {
-            for (int i = 0; i < 100000; ++i)
+    std::thread prod([&] {
+        for (int i = 0; i < 100000; ++i)
+        {
+            while (!queue.emplace(static_cast<ElementType>(i)))
             {
-                while (!q.emplace())
-                { /* spin/yield if you want */
-                }
             }
-        });
-
+        }
+    });
     std::thread cons([&] {
-        int v;
+        ElementType v;
         std::uint64_t cnt = 0;
         while (cnt < 100000)
         {
-            if (q.pop(v))
+            if (queue.pop(v))
             {
                 ++cnt;
             }
@@ -42,3 +42,9 @@ static void ExampleSPSCQueue()
     cons.join();
 }
 } // End namespace fiah
+
+int main()
+{
+    fiah::ExampleSPSCQueue();
+    return 0;
+}

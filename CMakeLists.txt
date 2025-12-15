@@ -140,3 +140,34 @@ if(BENCHMARK_SOURCES)
         benchmark::benchmark_main
     )
 endif()
+
+# ============================================================================
+# Examples Configuration
+# ============================================================================
+
+# Collect all example source files
+file(GLOB_RECURSE EXAMPLE_SOURCES
+    "${CMAKE_SOURCE_DIR}/examples/*_example.cc"
+)
+
+# Build each example as a separate executable
+foreach(EXAMPLE_SOURCE ${EXAMPLE_SOURCES})
+    get_filename_component(EXAMPLE_NAME ${EXAMPLE_SOURCE} NAME_WE)
+    
+    add_executable(${EXAMPLE_NAME}
+        ${EXAMPLE_SOURCE}
+    )
+
+    set_target_properties(${EXAMPLE_NAME} PROPERTIES
+        CXX_STANDARD 23
+        CXX_STANDARD_REQUIRED YES
+    )
+
+    target_include_directories(${EXAMPLE_NAME} PRIVATE
+        ${CMAKE_SOURCE_DIR}/include
+    )
+
+    target_link_libraries(${EXAMPLE_NAME} PRIVATE
+        Threads::Threads
+    )
+endforeach()

@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-// FastInAHurry Includes
+// QuickLib Includes
 #include "quick/utils/Logger.hh"
 #include "quick/utils/TomlParser.hh"
 

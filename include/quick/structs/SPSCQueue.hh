@@ -11,7 +11,7 @@
 #include <type_traits>
 #include <utility>
 
-// FastInAHurry Includes
+// QuickLib Includes
 
 namespace quick::structs
 {

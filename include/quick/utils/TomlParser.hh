@@ -21,7 +21,7 @@
 #include <unordered_map>
 #include <vector>
 
-// FastInAHurry Includes
+// QuickLib Includes
 #include "quick/utils/Logger.hh"
 
 // Third Party Includes

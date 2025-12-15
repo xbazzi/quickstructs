@@ -21,7 +21,6 @@ template <typename Element> class Vector
     {
         if (alloc_size == 0)
             return nullptr;
-        std::cout << "Allocating: " << alloc_size << std::endl;
         return static_cast<Element *>(::operator new(sizeof(Element) * alloc_size));
     }
 
@@ -78,6 +77,11 @@ template <typename Element> class Vector
         ::operator delete(p_arr);
     }
 
+    Element &operator[](std::size_t pos)
+    {
+        return *(p_arr + pos);
+    }
+
     template <class T> void push_back(T &&element)
     {
         if (m_cap == 1) [[unlikely]]
@@ -119,12 +123,12 @@ template <typename Element> class Vector
         return *(static_cast<Element *>(p_arr + index));
     }
 
-    std::size_t get_size() const
+    std::size_t size() const
     {
         return m_size;
     }
 
-    std::size_t get_capacity() const
+    std::size_t capacity() const
     {
         return m_cap;
     }
